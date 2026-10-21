@@ -220,7 +220,7 @@
 
   let timer;
   const schedule=()=>{clearTimeout(timer);timer=setTimeout(()=>{run().catch(()=>{});learnVerifiedAnswer().catch(()=>{});},500);};
-  new MutationObserver(schedule).observe(document.documentElement,{subtree:true,childList:true,characterData:true,attributes:true});
+  new MutationObserver(records=>{ if (records.some(r=>!(r.target.nodeType===1 ? r.target : r.target.parentElement)?.closest("#asen-status"))) schedule(); }).observe(document.documentElement,{subtree:true,childList:true,characterData:true,attributes:true});
   chrome.storage.onChanged.addListener(schedule);
   schedule();
 })();
