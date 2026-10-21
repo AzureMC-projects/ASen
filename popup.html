@@ -3,11 +3,11 @@
 <style>
 body{font:14px/1.45 system-ui,sans-serif;width:320px;margin:0;padding:16px;color:#172033}h1{font-size:20px;margin:0 0 4px}p{color:#586174;margin:0 0 14px}label{display:flex;gap:9px;align-items:center;margin:12px 0}input[type=checkbox]{width:16px;height:16px}textarea{width:100%;height:150px;box-sizing:border-box;border:1px solid #cbd2df;border-radius:8px;padding:8px;font:12px/1.4 ui-monospace,monospace}button{border:0;border-radius:8px;background:#285fe8;color:white;padding:9px 12px;cursor:pointer;margin:8px 6px 0 0}button.secondary{background:#e8ecf5;color:#172033}#status{min-height:18px;font-size:12px;margin-top:8px;color:#3b6853}.note{font-size:12px;color:#586174;margin-top:10px}
 </style></head><body>
-<h1>ASen</h1><p>Local Seneca page reader and study helper</p>
-<label><input id="autoSelect" type="checkbox"> Apply supported answers automatically</label>
-<label><input id="autoNext" type="checkbox"> Advance after applying an answer (experimental)</label>
+<h1>ASen</h1><p>Automatic Seneca question helper</p>
+<label><input id="autoSelect" type="checkbox"> Automatically click/type supported answers</label>
+<label><input id="autoNext" type="checkbox"> Check answers and advance automatically (experimental)</label>
 <strong>Local answer bank (JSON)</strong>
-<p class="note">ASen reads visible lesson text and supports some choice and text-input formats. Lesson matching is heuristic, not guaranteed. Saved answers should be verified.</p>
+<p class="note">ASen attempts answers when you start an assignment, clicks choices, fills supported fields, and advances when Seneca exposes the right controls. If unsure, it may guess and label the guess. It cannot guarantee every layout.</p>
 <textarea id="bank" spellcheck="false" placeholder='[{"question":"Question text?","answer":"Verified answer"}]'></textarea>
 <div><button id="save">Save settings</button><button id="export" class="secondary">Export bank</button><button id="import" class="secondary">Import bank</button></div>
 <input id="file" type="file" accept="application/json,.json" hidden><div id="status" role="status"></div><script src="popup.js"></script>
