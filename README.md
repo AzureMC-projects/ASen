@@ -9,18 +9,18 @@ ASen is a local Chrome extension prototype for reading visible Seneca lesson/que
 3. Choose **Load unpacked** and select the extracted ASen folder.
 4. After future updates, download/extract the latest version and use **Reload** on the extension card (or load the updated folder).
 
-## Current capabilities
+## Current capabilities (prototype)
 
 - Reads visible text from the current page, including lesson passages outside interactive controls.
 - Detects likely question text and visible answer choices using DOM heuristics.
 - Matches exact/contained saved question-answer entries from a local answer bank.
 - Uses conservative word-overlap evidence from visible lesson sentences to rank some multiple-choice options.
 - Can click a supported choice, fill a text input/textarea/contenteditable, or choose a matching dropdown option when auto-apply is enabled.
-- Can optionally advance after applying an answer.
+- Attempts to start automatic mode when you click a Seneca start-assignment control.\n- Can click single/multiple choice options, fill supported text fields, select dropdown options, and attempt Check/Next progression.\n- If lesson evidence is weak, it makes a best-effort guess for supported choice/text questions and labels low-confidence guesses in the ASen status panel.\n- Uses DOM clicks and input events inside the Seneca webpage; it does not move the operating-system mouse cursor.
 - Stores the answer bank and settings in Chrome local storage; there is no external AI/network service in this extension.
 - Has an experimental learning hook for pages that visibly report correctness. Verify learned entries before relying on them.
 
-## Answer bank format
+## Important limitations\n\nThis is still a prototype and has not been verified against every live Seneca activity. Matching-pair, drag-and-drop, ordering, image-based, and complex multi-part questions may not work. Seneca may change its page structure, and automatic progression can fail if controls use unexpected labels. Guesses can be wrong; check your work. No universal solver is possible from page text alone.\n\n## Answer bank format
 
 Import or paste a JSON array in the popup:
 
