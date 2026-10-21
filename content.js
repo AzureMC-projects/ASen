@@ -183,16 +183,27 @@
       result=solveFromLesson(page.question,page.options,page.pageText);
       target=result?.target||null;
     }
+    // If lesson evidence is weak, still make a best-effort multiple-choice guess,
+    // and explicitly label it as a guess so the user knows it may be wrong.
+    if (!result && page.question && page.options.length>=2) {
+      const ranked=page.options.map(o=>({...o,...evidenceScore(page.question,o.text,page.pageText)}))
+        .sort((a,b)=>b.score-a.score);
+      target=ranked[0];
+      result={answer:target.text,target,confidence:"LOW CONFIDENCE — guessing",evidence:target.sentence||""};
+    }
     if (!result && page.controls.length) {
       const direct=findBankMatch(page.question,bank);
       if (direct) result=direct;
     }
     if (!result) {
-      renderStatus(page.question ? "Read page + question; no confident answer found." : "Page read; waiting for a clear question.", "warn");
+      renderStatus(page.question
+        ? "I don't know this one yet; no choices to guess from. Please check it manually."
+        : "Page read; waiting for a clear question.", "warn");
       return;
     }
+    const isGuess=String(result.confidence).includes("guessing");
     const preview=result.answer.length>70?result.answer.slice(0,67)+"…":result.answer;
-    renderStatus(result.confidence+": "+preview+(result.evidence?" · evidence: "+result.evidence.slice(0,90):""), "good");
+    renderStatus(result.confidence+": "+preview+(result.evidence?" · evidence: "+result.evidence.slice(0,90):""), isGuess?"warn":"good");
     const acted=applyAnswer(page,result.answer,stored,target);
     if (acted && stored.autoNext===true) {
       setTimeout(()=>{
