@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "ASen — Seneca Study Helper",
-  "version": "0.2.0",
-  "description": "Reads visible lesson context and helps solve supported Seneca question formats locally.",
+  "version": "0.3.0",
+  "description": "Reads visible lesson context and attempts supported Seneca questions locally.",
   "permissions": [
     "storage"
   ],
