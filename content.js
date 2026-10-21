@@ -170,7 +170,7 @@
   async function run() {
     const page=readPage();
     if (!page.question && !page.controls.length) return;
-    const stored=await chrome.storage.local.get(["answerBank","autoSelect","autoNext"]);
+    const stored=await chrome.storage.local.get(["answerBank","autoSelect","autoNext"]);\n    if (stored.autoSelect === undefined) stored.autoSelect = true;\n    if (stored.autoNext === undefined) stored.autoNext = true;
     const bank=Array.isArray(stored.answerBank)?stored.answerBank:[];
     const bankMatch=findBankMatch(page.question,bank);
     let result=bankMatch;
