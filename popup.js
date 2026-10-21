@@ -3,8 +3,8 @@ const status = (s) => { $("status").textContent = s; };
 
 async function load() {
   const data = await chrome.storage.local.get(["answerBank", "autoSelect", "autoNext"]);
-  $("autoSelect").checked = data.autoSelect === true;
-  $("autoNext").checked = data.autoNext === true;
+  $("autoSelect").checked = data.autoSelect !== false;
+  $("autoNext").checked = data.autoNext !== false;
   $("bank").value = JSON.stringify(Array.isArray(data.answerBank) ? data.answerBank : [], null, 2);
 }
 $("save").addEventListener("click", async () => {
