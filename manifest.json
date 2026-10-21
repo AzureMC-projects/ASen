@@ -1,0 +1,28 @@
+{
+  "manifest_version": 3,
+  "name": "ASen — Seneca Study Helper",
+  "version": "0.1.0",
+  "description": "Detects Seneca questions and matches them against a local answer bank.",
+  "permissions": [
+    "storage"
+  ],
+  "host_permissions": [
+    "https://app.senecalearning.com/*",
+    "https://senecalearning.com/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://app.senecalearning.com/*",
+        "https://senecalearning.com/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  }
+}
